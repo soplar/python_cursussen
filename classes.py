@@ -19,10 +19,10 @@ class Persoon:
         if 100 > leeftijd > 18:
             self.__leeftijd = leeftijd
         else:
-            raise Exception(f'De leeftijd {leeftijd} is ongeldig') 
+            raise Exception(f'De leeftijd {leeftijd} is ongeldig')
 
     def __str__(self):
-        return f"{self.__class__.__name__}('{self.__naam}',{self.__leeftijd})"
+        return f"{self.__naam:<10} {self.__leeftijd:<20}"
 
 class Docent(Persoon):
 

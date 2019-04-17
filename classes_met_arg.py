@@ -1,16 +1,28 @@
 class Persoon:
 
-    def __init__(self, naam, leeftijd):
+    def __init__(self, naam, geboorte_datum,
+                 geslacht, bsn):
+        
         self.__naam = naam
-        self.__leeftijd = leeftijd
+        self.__geboorte_datum = geboorte_datum
+        self.__geslacht = geslacht
+        self.__bsn = bsn
 
     @property
     def naam(self):
         return self.__naam
 
     @property
-    def leeftijd(self):
-        return self.__leeftijd
+    def geboorte_datum(self):
+        return self.__geboorte_datum
+
+    @property
+    def geslacht(self):
+        return self.__geslacht
+
+    @property
+    def bsn(self):
+        return self.__bsn
 
     def verander_naam(self, naam):
         self.__naam = naam.lower()
@@ -19,15 +31,17 @@ class Persoon:
         if 100 > leeftijd > 18:
             self.__leeftijd = leeftijd
         else:
-            raise Exception(f'De leeftijd {leeftijd} is ongeldig') 
+            raise Exception(f'De leeftijd {leeftijd} is ongeldig')
+
+    def __repr__(self):
+        return f'{self.naam} {self.leeftijd}'
 
     def __str__(self):
-        return f"{self.__class__.__name__}('{self.__naam}',{self.__leeftijd})"
-
+        return f"{self.naam:<15}{self.geboorte_datum:<15}{self.geslacht:<10}{self.bsn:<10}"
+    
 class Docent(Persoon):
 
     def __init__(self, pnummer, *args, lesbevoegd=False):
-        print(args)
         super().__init__(*args)
         self.__pnummer = pnummer
         self.__lesbevoegd = lesbevoegd
@@ -43,6 +57,5 @@ class Docent(Persoon):
         
 if __name__ == '__main__':
     d = Docent('007', 'Cor',20)
-
     d.verleenBevoegdheid()
-print(d)
+    print(d)
